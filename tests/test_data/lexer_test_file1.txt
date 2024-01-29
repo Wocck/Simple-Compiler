@@ -1,0 +1,21 @@
+#program 2
+
+fun int::main()[
+	# Define a mutable variable a with value 5
+	mut int::a = 5;
+
+	# Define an immutable variable b and assign a to it
+	int::b = a;
+
+	# Modifying a
+	a = 10;
+
+	# Printing the values of a and b
+	println(a);  # outputs 10
+	println(b);  # outputs 10
+
+	# Trying to modify b directly will result in an error
+	# b = 15;  # Error: Attempt to modify immutable variable
+
+	return 0;
+]

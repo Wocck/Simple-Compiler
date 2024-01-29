@@ -1,0 +1,1 @@
+fun main()[mut int::a = 5;return;]

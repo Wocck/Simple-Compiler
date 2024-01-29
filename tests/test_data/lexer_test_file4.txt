@@ -1,0 +1,14 @@
+# testing string escaping
+fun main()[
+    string::s = "ala\nma\nkota";
+    string::t = "k\t\tala";
+    string::r = "\\c\\b";
+    string::u = "\\\n\t\x"
+    string::x = "\\"
+
+    print(s);
+    print(t);
+    print(r);
+    print(u);
+    print(x);
+]

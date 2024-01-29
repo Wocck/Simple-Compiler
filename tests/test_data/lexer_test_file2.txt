@@ -1,0 +1,87 @@
+# Function to check if a number is prime
+int::n = 1;
+str::s = "Hello World!";
+float::a = 0.0;
+float::b = 1.23456;
+float::c = -123.123141;
+int::d = -123123;
+int::e = 123;
+int::foobar = 987654321;
+float::foobar2 = 0.1234;
+bool::bol = false;
+
+float::x1 = 123.;
+float::x2 = 0.123;
+struct::Position(
+    int::x;
+    int::y;
+);
+
+variant::User_input(
+    int;
+    str;
+    bool;
+);
+
+fun bool::is_prime(int::number)[
+	# 0 and 1 are not prime numbers
+	int::nana = 2;
+	if number <= 1 [
+		return false;
+	]
+
+	if nana [
+        return false;
+    ]
+	if number == 2 [
+		return true;
+	]
+
+	# All other even numbers are not primes
+	if 0 == number * 2 [
+		  return false;
+	]
+
+	# Check factors up to the square root of the number
+	int::limit = number * 0.5 as[int];
+	mut int::i = 3;
+
+	while i <= limit [
+		# If i is a factor of number, number is not prime
+		if number / i == 0 [
+			return false;
+		]
+		i = i + 2;
+	]
+
+	# If no factors were found, then number is prime
+	return true;
+]
+
+fun int::main()[
+    int::number = 29;
+    if number == 2 or number != 3 [
+        # do nothing
+    ]
+
+	int::num = 5;
+	bool::result = is_prime(5);
+	# Print whether the number is prime or not
+	if result [
+		print(num, " is a prime number.");  # Outputs "29 is a prime number."
+	] else [
+		# this line will never execute
+		print();
+	]
+
+    User_input::input1 = "text";
+    User_input::input2 = 1;
+    input1 = "another text"; # variant is mutable by default
+    Position::noMutPos(1, 2);
+    # noMutPos.x = 1; # error
+    # noMutPos.y = 2; # error
+    #int::habibi = mutPos.x;
+    User_input::input3;
+
+	return 1;
+]

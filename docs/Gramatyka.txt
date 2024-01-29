@@ -1,0 +1,70 @@
+program 			= {declaration, ";" | functionDecl};
+			
+functionDecl       	= "fun", typeDecl, "(", parameters, ")", block ;
+block              	= "[", {statement}, "]" ;
+statement          	= funCall, ";"
+					| declaration, ";"
+					| assignment, ";"
+					| returnStmt, ";'
+					| conditionalStat 
+					| loop 
+					| block ;
+assignment         	= identifier, "=", expression;
+ifStatement		    = "if", expression, block,
+						[ "else", block ];
+loop               	= "while", expression, block ;
+returnStmt         	= "return", [expression];
+funCall   				= identifier, ["(", arguments, ")"] ;
+arguments          	= [expression, {",", expression}] ;
+
+expression          = and_expr, { "||", and_expr } ;
+and_expr            = rel_expr, { "&&", rel_expr } ;
+rel_expr      		= artm_expr, { relationOp, artm_expr } ;
+artm_expr          	= mul_expr, { sumOp, mul_expr } ;
+mul_expr     		= unary_expr, { mulOp, unary_expr } ;
+unary_expr       	= [ "-" | "!" ], casting_expr ;
+casting_expr       	= factor, "as", "[", type, "]";
+factor              = literal | identifier | funCall | "(", expression, ")" ;
+
+declaration			= variableDecl
+					| structVarDecl
+					| structTypeDef
+					| variantTypeDef
+					
+variantTypeDef		= "variant", "::", identifier, "(",
+						[allTypes, ";", {allTypes, ";"}]
+						")" ;
+structVarDecl		= ["mut"], identifier, "::", identifier, "(",
+						[expression, {",", expression}]
+						")" ;
+structTypeDef		= "struct", "::", identifier, "("
+						[typeDecl, ";", {typeDecl, ";"}],
+						")" ;
+variableDecl  		= ["mut"], typeDecl, ["=", expression];
+parameters    		= [typeDecl, {",", typeDecl}] ;
+typeDecl       		= allTypes, "::", identifier ;
+allTypes			= type | identifier;
+
+identifier    		= letter, {letter | digit | "_"} ;
+literal      		= boolean | string | integer | number ;
+string         		= ‘"’, (anyCharNoQuotes - newline) , ‘"’;
+anyCharNoQuotes 	= anyChar – ‘"’;
+number				= [integer], [ ".", [ integer ] ];
+integer				= "0" | [ "-" ], naturalNumber ;
+naturalNumber		= digitExcludingZero, { digit } ;
+boolean 			= "true" | "false";
+
+
+Regex:
+letter				= [a-zA-Z]
+digitExcludingZero	= [1-9]
+digit				= [0-9]
+newline				= (\n|\r\n|\n\r)
+anyChar 			= .
+type				= ( bool | str | int | char | float 
+					 | struct | variant )
+simpleVarType		= ( bool | str | int | char | float )
+complexVarType		= ( range | struct | variant)
+relationOP			= (<|<=|==|>|>=|!=)
+sumOp				= (+|-)
+mulOP				= (*|/|%)

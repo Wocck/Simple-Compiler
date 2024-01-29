@@ -1,0 +1,29 @@
+# Function to check if a number is prime
+
+struct::Position (
+    int::x;
+    int::y;
+);
+
+fun int::main()[
+    /#
+	int::num = input("type number:");  # take number from stdin
+	bool::result = is_prime(num);
+
+	# Print whether the number is prime or not
+	if result [
+		println(num, " is a prime number.");  # Outputs "29 is a prime number."
+	] else [
+		# this line will never execute
+	]
+
+    user_input::input1 = "text";
+    user_input::input2 = 1;
+    Position::x(1, 2);
+    mut Position::mpos;
+    mpos.x = 1;
+    mpos.y = 2;
+    mpos.user_input = "user input";
+    #/
+	return;
+]
