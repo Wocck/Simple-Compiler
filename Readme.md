@@ -1,6 +1,5 @@
-﻿# TKOM 2023Z - Dokumentacja Wstępna
+# Dokumentacja
 ## Wstęp
-Język jest pisany jako połączenie dwóch już stworzonych języków - C++ i Python. Ma na celu wydobycie wygodnych cech z obydwu języków i połączenie je w jeden.
 Język cechują następujące założenia dotyczące zmiennych:
 * Silne Typowanie - Zmienne mają określony typ i nie mogą być porównywane z innymi typami. Nie można bez konwersji przypisać wartości zmiennej jednego typu do zmiennej innego typu.
 * Domyślnie Stałe - Zmienne są domyślnie stałe czyli muszą zostać zadeklarowane z wartością, której później nie możemy zmieniać podczas wykonywania programu. Zmienne dynamiczne możemy zadeklarować przy pomocy słowa kluczowego `mut`.
